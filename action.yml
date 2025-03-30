@@ -42,8 +42,11 @@ runs:
       with:
         version: "latest"
 
+    # TODO: derive atopile version from the ato.yaml
+
     - name: Publish package
-      run: uvx --from "atopile@${ATO_VERSION}" ato package publish
+      run: uvx --from git+https://github.com/atopile/atopile@mawildoer/ato-package-publish atopile ato package publish
+      # run: uvx --from "atopile@$ATO_VERSION" ato package publish
       shell: bash
       env:
         ATO_VERSION: ${{ inputs.atopile-version }}

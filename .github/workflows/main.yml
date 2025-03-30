@@ -18,4 +18,6 @@ jobs:
 
       - uses: atopile/atopile-package-publish-action@main
         with:
+          include-paths: "test.ato"
           registry: "http://100.75.32.89:8000/"
+          # atopile-version: ""
