@@ -43,7 +43,7 @@ runs:
         version: "latest"
 
     - name: Publish package
-      run: uvx --from "atopile@${ATOPILE_VERSION}" ato package publish
+      run: uvx --from "atopile@${ATO_VERSION}" ato package publish
       shell: bash
       env:
         ATO_VERSION: ${{ inputs.atopile-version }}
