@@ -1,0 +1,21 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: tailscale/github-action@v3
+        with:
+            oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+            oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+            tags: tag:ci
+
+      # Dump something out to package and publish
+      - run: echo "import Resistor" > test.ato
+
+      - uses: atopile/atopile-package-publish-action@main
+        with:
+          registry: "http://100.75.32.89:8000/"

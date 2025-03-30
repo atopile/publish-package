@@ -1,0 +1,54 @@
+name: "atopile Publish"
+
+description: "Publish an atopile package."
+
+inputs:
+  include-paths:
+    description: "Paths to files to include in the package. Comma separated."
+    required: true
+    # TODO: create a sane default
+  exclude-paths:
+    description: "Paths to files to exclude from the package. Comma separated."
+    required: true
+    default: ""
+  include-targets:
+    description: "Targets to include in the package. Comma separated."
+    required: true
+    default: ""
+  atopile-version:
+    description: "Version of atopile to use"
+    required: true
+    default: "latest"
+  package-version:
+    description: "Version of the package to publish"
+    required: true
+    default: "from-tag"
+  registry:
+    description: "Registry to publish the package to"
+    required: true
+    default: "https://packages.atopileapi.com"
+
+# Example output
+# outputs:
+#   random-number:
+#     description: "Random number"
+#     value: ${{ steps.random-number-generator.outputs.random-number }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        version: "latest"
+
+    - name: Publish package
+      run: uvx --from "atopile@${ATOPILE_VERSION}" ato package publish
+      shell: bash
+      env:
+        ATO_VERSION: ${{ inputs.atopile-version }}
+        ATO_PACKAGE_INCLUDE: ${{ inputs.include-paths }}
+        ATO_PACKAGE_EXCLUDE: ${{ inputs.exclude-paths }}
+        ATO_PACKAGE_INCLUDE_BUILD_TARGETS: ${{ inputs.include-targets }}
+        ATO_PACKAGE_VERSION: ${{ inputs.package-version }}
+        ATO_PACKAGE_REGISTRY: ${{ inputs.registry }}
