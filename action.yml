@@ -41,6 +41,7 @@ runs:
       uses: astral-sh/setup-uv@v5
       with:
         version: "latest"
+        enable-cache: false
 
     # TODO: derive atopile version from the ato.yaml
 
@@ -58,3 +59,4 @@ runs:
         ATO_PACKAGE_INCLUDE_BUILD_TARGETS: ${{ inputs.include-targets }}
         ATO_PACKAGE_VERSION: ${{ inputs.package-version }}
         ATO_PACKAGE_REGISTRY: ${{ inputs.registry }}
+        FBRK_OVERRIDE_COMPILER_VERSION: "0.3.23" # FIXME: remove
