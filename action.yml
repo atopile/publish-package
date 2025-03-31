@@ -3,24 +3,24 @@ name: "atopile Publish"
 description: "Publish an atopile package."
 
 inputs:
-  include-paths:
-    description: "Paths to files to include in the package. Comma separated."
+  include-pathspec:
+    description: "Pathspec in git's wildcard format to files to include in the package. Instead of lines, the pathspec is comma-separated."
     required: true
-    # TODO: create a sane default
-  exclude-paths:
-    description: "Paths to files to exclude from the package. Comma separated."
-    required: true
-    default: ""
-  include-targets:
-    description: "Targets to include in the package. Comma separated."
+    default: "**"
+  include-builds:
+    description: "Comma-separated list of build targets to include in the package. Empty implies all."
     required: true
     default: ""
   atopile-version:
-    description: "Version of atopile to use"
+    description: "Version of atopile to use for publishing."
     required: true
     default: "latest"
+  package-name:
+    description: "Name of the package to publish. If empty, the name is expected in the ato.yaml file."
+    required: true
+    default: ${{ github.repository }}
   package-version:
-    description: "Version of the package to publish"
+    description: "Version of the package to publish. If empty, the version is expected in the ato.yaml file."
     required: true
     default: "from-tag"
   registry:
@@ -52,9 +52,10 @@ runs:
       # run: uvx --from "atopile@${{ inputs.atopile-version }}" ato package publish
       shell: bash
       env:
-        ATO_PACKAGE_INCLUDE: ${{ inputs.include-paths }}
-        ATO_PACKAGE_EXCLUDE: ${{ inputs.exclude-paths }}
+        ATO_NAME: ${{ inputs.package-name }} # envvar honored by the config, not specified by the CLI
+        ATO_REPOSITORY: ${{ github.repositoryUrl }} # envvar honored by the config, not specified by the CLI
+        ATO_PACKAGE_INCLUDE_PATCHSPEC: ${{ inputs.include-pathspec }}
         ATO_PACKAGE_INCLUDE_BUILD_TARGETS: ${{ inputs.include-targets }}
         ATO_PACKAGE_VERSION: ${{ inputs.package-version }}
-        ATO_SERVICES_PACKAGES_URL: ${{ inputs.registry }}
+        ATO_SERVICES_PACKAGES_URL: ${{ inputs.registry }} # envvar honored by the config, not specified by the CLI
         NONINTERACTIVE: 1

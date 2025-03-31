@@ -19,7 +19,7 @@ jobs:
       # Dump something out to package and publish
       - run: echo "import Resistor" > test.ato
 
-      - uses: atopile/atopile-package-publish-action@mawildoer/dev-atopile
+      - uses: "atopile/atopile-package-publish-action@${{ github.ref_name}}"
         with:
           include-paths: "test.ato"
           registry: "http://100.75.32.89:8000/"
