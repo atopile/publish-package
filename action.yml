@@ -45,15 +45,11 @@ runs:
 
     # TODO: derive atopile version from the ato.yaml
 
-    # TODO: remove
-    - uses: jwlawson/actions-setup-cmake@v2
-
     - name: Publish package
-      run: uvx --from git+https://github.com/atopile/atopile@mawildoer/ato-package-publish ato -vv package publish
-      # run: uvx --from "atopile@$ATO_VERSION" ato package publish
+      # run: uvx --from git+https://github.com/atopile/atopile@mawildoer/ato-package-publish at -vv package publish
+      run: uvx --from "atopile@${{ inputs.package-version }}" ato package publish
       shell: bash
       env:
-        ATO_VERSION: ${{ inputs.atopile-version }}
         ATO_PACKAGE_INCLUDE: ${{ inputs.include-paths }}
         ATO_PACKAGE_EXCLUDE: ${{ inputs.exclude-paths }}
         ATO_PACKAGE_INCLUDE_BUILD_TARGETS: ${{ inputs.include-targets }}
