@@ -1,9 +1,8 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  test:
     runs-on: ubuntu-latest
-    name: A job to publish a faux package
     steps:
       - uses: actions/checkout@v4
 
