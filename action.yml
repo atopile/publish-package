@@ -33,6 +33,8 @@ inputs:
 #   random-number:
 #     description: "Random number"
 #     value: ${{ steps.random-number-generator.outputs.random-number }}
+# TODO: output the URL or the published package
+# TODO: hash of the package
 
 runs:
   using: "composite"
@@ -47,12 +49,12 @@ runs:
 
     - name: Publish package
       # run: uvx --from git+https://github.com/atopile/atopile@mawildoer/ato-package-publish at -vv package publish
-      run: uvx --from "atopile@${{ inputs.package-version }}" ato package publish
+      run: uvx --from "atopile@${{ inputs.atopile-version }}" ato package publish
       shell: bash
       env:
         ATO_PACKAGE_INCLUDE: ${{ inputs.include-paths }}
         ATO_PACKAGE_EXCLUDE: ${{ inputs.exclude-paths }}
         ATO_PACKAGE_INCLUDE_BUILD_TARGETS: ${{ inputs.include-targets }}
         ATO_PACKAGE_VERSION: ${{ inputs.package-version }}
-        ATO_PACKAGE_REGISTRY: ${{ inputs.registry }}
+        ATO_SERVICES_PACKAGES_URL: ${{ inputs.registry }}
         NONINTERACTIVE: 1
