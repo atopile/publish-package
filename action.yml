@@ -48,8 +48,8 @@ runs:
     # TODO: derive atopile version from the ato.yaml
 
     - name: Publish package
-      # run: uvx --from git+https://github.com/atopile/atopile@mawildoer/ato-package-publish at -vv package publish
-      run: uvx --from "atopile@${{ inputs.atopile-version }}" ato package publish
+      run: uvx --from git+https://github.com/atopile/atopile@mawildoer/ato-package-publish at -vv package publish
+      # run: uvx --from "atopile@${{ inputs.atopile-version }}" ato package publish
       shell: bash
       env:
         ATO_PACKAGE_INCLUDE: ${{ inputs.include-paths }}
