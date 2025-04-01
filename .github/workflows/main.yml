@@ -19,8 +19,8 @@ jobs:
       # Dump something out to package and publish
       - run: echo "import Resistor" > test.ato
 
-      - uses: atopile/atopile-package-publish-action@main
+      - uses: ./
         with:
-          include-paths: "test.ato"
+          include-pathspec: "test.ato"
           registry: "http://100.75.32.89:8000/"
           # atopile-version: ""
