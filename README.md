@@ -2,6 +2,8 @@
 
 A Github action to publish atopile packages 📦 🛳️
 
+Check our [docs](https://docs.atopile.io) for a guide to setup publishing
+
 ## Configuration
 
 In the example below, the option selected is the default, so it's not necessary to specify the options.
