@@ -39,7 +39,7 @@ runs:
     # TODO: derive atopile version from the ato.yaml
 
     - name: Publish package
-      run: cd ${{ inputs.working-directory }} && uvx --from git+https://github.com/atopile/atopile@feature/ato_cli_deps ato package publish
+      run: cd ${{ inputs.working-directory }} && uvx --from git+https://github.com/atopile/atopile@feature/ato_cli_deps ato -v package publish
       # run: cd ${{ inputs.working-directory }} && uvx --from "atopile@${{ inputs.atopile-version }}" ato package publish
       shell: bash
       env:
