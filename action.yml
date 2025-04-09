@@ -1,4 +1,4 @@
-name: "atopile Publish"
+name: "publish-package"
 
 description: "Publish an atopile package."
 
@@ -7,10 +7,6 @@ inputs:
     description: "Version of atopile to use for publishing."
     required: true
     default: "latest"
-  package-name:
-    description: "Name of the package to publish. If empty, the name is expected in the ato.yaml file."
-    required: true
-    default: ${{ github.repository }}
   package-version:
     description: "Version of the package to publish. If empty, the version is expected in the ato.yaml file."
     required: true
@@ -48,8 +44,6 @@ runs:
       # run: uvx --from "atopile@${{ inputs.atopile-version }}" ato package publish
       shell: bash
       env:
-        ATO_NAME: ${{ inputs.package-name }} # envvar honored by the config, not specified by the CLI
-        ATO_REPOSITORY: ${{ github.repositoryUrl }} # envvar honored by the config, not specified by the CLI
         ATO_PACKAGE_VERSION: ${{ inputs.package-version }}
         ATO_SKIP_DUPLICATE_VERSION: ${{ inputs.skip-duplicate-version }}
         ATO_SERVICES_PACKAGES_URL: ${{ inputs.registry }} # envvar honored by the config, not specified by the CLI
