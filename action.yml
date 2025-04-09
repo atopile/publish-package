@@ -7,22 +7,30 @@ inputs:
     description: "Version of atopile to use for publishing."
     required: true
     default: "latest"
+
   package-version:
     description: "Version of the package to publish. If empty, the version is expected in the ato.yaml file."
     required: true
     default: "from-tag"
+
   package-entrypoint:
     description: "A path (`path/to/package`) or entrypoint (`main.ato:App`) to the package to publish."
     required: true
     default: "./"
+
   skip-duplicate-versions:
     description: "Skip publishing if the version already exists"
     required: false
     default: "true"
+
+  # You should probably use `package-entrypoint` instead.
+  # Honestly, I'm not 100% sure why you'd need this, but I've missed it
+  # from others' actions before, so I'm including it here in case you need it.
   working-directory:
     description: "Working directory to publish the package from"
     required: true
     default: "."
+
   registry:
     description: "Registry to publish the package to"
     required: true
