@@ -1,4 +1,4 @@
-# publish-package (a Github Action)
+# Publish an atopile Package
 
 A Github action to publish atopile packages 📦 🛳️
 
