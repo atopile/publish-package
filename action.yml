@@ -19,7 +19,7 @@ inputs:
     description: "Working directory to publish the package from"
     required: true
     default: "."
-  skip-duplicate-version:
+  skip-duplicate-versions:
     description: "Skip publishing if the version already exists"
     required: false
     default: "true"
@@ -44,6 +44,6 @@ runs:
       shell: bash
       env:
         ATO_PACKAGE_VERSION: ${{ inputs.package-version }}
-        ATO_SKIP_DUPLICATE_VERSION: ${{ inputs.skip-duplicate-version }}
+        ATO_SKIP_DUPLICATE_VERSIONS: ${{ inputs.skip-duplicate-versions }}
         ATO_SERVICES_PACKAGES_URL: ${{ inputs.registry }} # envvar honored by the config, not specified by the CLI
         NONINTERACTIVE: 1
