@@ -15,6 +15,10 @@ inputs:
     description: "Registry to publish the package to"
     required: true
     default: "https://packages.atopileapi.com"
+  working-directory:
+    description: "Working directory to publish the package from"
+    required: true
+    default: "."
   skip-duplicate-version:
     description: "Skip publishing if the version already exists"
     required: false
@@ -35,8 +39,8 @@ runs:
     # TODO: derive atopile version from the ato.yaml
 
     - name: Publish package
-      run: uvx --from git+https://github.com/atopile/atopile@feature/ato_cli_deps ato package publish
-      # run: uvx --from "atopile@${{ inputs.atopile-version }}" ato package publish
+      run: cd ${{ inputs.working-directory }} && uvx --from git+https://github.com/atopile/atopile@feature/ato_cli_deps ato package publish
+      # run: cd ${{ inputs.working-directory }} && uvx --from "atopile@${{ inputs.atopile-version }}" ato package publish
       shell: bash
       env:
         ATO_PACKAGE_VERSION: ${{ inputs.package-version }}
