@@ -20,11 +20,6 @@ inputs:
     required: false
     default: "true"
 
-# Example output
-# outputs:
-#   random-number:
-#     description: "Random number"
-#     value: ${{ steps.random-number-generator.outputs.random-number }}
 # TODO: output the URL or the published package
 # TODO: hash of the package
 
@@ -40,7 +35,7 @@ runs:
     # TODO: derive atopile version from the ato.yaml
 
     - name: Publish package
-      run: uvx --from git+https://github.com/atopile/atopile@main ato package publish
+      run: uvx --from git+https://github.com/atopile/atopile@feature/ato_cli_deps ato package publish
       # run: uvx --from "atopile@${{ inputs.atopile-version }}" ato package publish
       shell: bash
       env:
