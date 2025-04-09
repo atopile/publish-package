@@ -4,6 +4,8 @@ A Github action to publish atopile packages 📦 🛳️
 
 ## Configuration
 
+In the example below, the option selected is the default, so it's not necessary to specify the options.
+
 ```yaml
 - uses: atopile/publish-package@v1
   with:
