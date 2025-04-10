@@ -2,7 +2,7 @@
 
 A Github action to publish atopile packages 📦 🛳️
 
-Check our [docs](https://docs.atopile.io) for a guide to setup publishing
+Check our [docs](https://docs.atopile.io/publish-package) for a guide to setup publishing
 
 ## Configuration
 
