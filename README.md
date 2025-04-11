@@ -12,7 +12,7 @@ In the example below, the option selected is the default, so it's not necessary 
 - uses: atopile/publish-package@v1
   with:
     # Either: derive the version from a config file (e.g., pyproject.toml or ato.yaml)
-    # [Recommended]
+    # [Recommended and default if neither are provided]
     ato-config: "ato.yaml"
     # Or: Specify the atopile version directly
     atopile-version: "0.3.23"

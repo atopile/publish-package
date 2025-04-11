@@ -5,12 +5,12 @@ description: "Publish an atopile package."
 inputs:
   ato-config:
     description: "Path to the ato.yaml file."
-    required: true
-    default: "ato.yaml"
+    required: false
+    default: ""
 
   atopile-version:
     description: "Version of atopile to use for publishing."
-    required: true
+    required: false
     default: ""
 
   package-version:
