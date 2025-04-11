@@ -49,7 +49,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: atopile/setup-atopile@main
+    - uses: atopile/setup-atopile@v1
       with:
         atopile-version: ${{ inputs.atopile-version }}
         ato-config: ${{ inputs.ato-config }}
