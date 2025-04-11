@@ -3,10 +3,15 @@ name: "publish-package"
 description: "Publish an atopile package."
 
 inputs:
+  ato-config:
+    description: "Path to the ato.yaml file."
+    required: true
+    default: "ato.yaml"
+
   atopile-version:
     description: "Version of atopile to use for publishing."
     required: true
-    default: "latest"
+    default: ""
 
   package-version:
     description: "Version of the package to publish. If empty, the version is expected in the ato.yaml file."
@@ -42,17 +47,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Setup uv
-      uses: astral-sh/setup-uv@v5
+    - uses: atopile/setup-atopile@main
       with:
-        version: "latest"
-        enable-cache: false
+        atopile-version: ${{ inputs.atopile-version }}
+        ato-config: ${{ inputs.ato-config }}
 
-    # TODO: derive atopile version from the ato.yaml
-
-    - name: Publish package
-      run: cd ${{ inputs.working-directory }} && uvx --from git+https://github.com/atopile/atopile@main ato -v package publish ${{ inputs.package-entrypoint }}
-      # run: cd ${{ inputs.working-directory }} && uvx --from "atopile@${{ inputs.atopile-version }}" ato package publish ${{ inputs.package-entrypoint }}
+    - run: cd ${{ inputs.working-directory }} && ato package publish ${{ inputs.package-entrypoint }}
       shell: bash
       env:
         ATO_CLI_PACKAGE_VERSION: ${{ inputs.package-version }}

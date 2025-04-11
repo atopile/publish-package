@@ -11,7 +11,11 @@ In the example below, the option selected is the default, so it's not necessary 
 ```yaml
 - uses: atopile/publish-package@v1
   with:
-    atopile-version: "latest"  # The version of atopile to use for publishing.
+    # [Recommended]
+    # Either: derive the version from a config file (e.g., pyproject.toml or ato.yaml)
+    ato-config: "ato.yaml"
+    # Or: Specify the atopile version directly
+    atopile-version: "0.3.23"
 
     # Version of the package to publish. If empty, the version is expected in the ato.yaml file.
     package-version: "from-tag"
