@@ -18,7 +18,7 @@ inputs:
   package-version:
     description: "Version of the package to publish. If empty, the version is expected in the ato.yaml file."
     required: true
-    default: "from-tag"
+    default: "from-git"
 
   package-entrypoint:
     description: "A path (`path/to/package`) or entrypoint (`main.ato:App`) to the package to publish."
