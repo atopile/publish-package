@@ -51,7 +51,7 @@ runs:
   steps:
     - uses: atopile/setup-atopile@v1
       with:
-        atopile-version: ${{ inputs.atopile-version }}
+        version: ${{ inputs.atopile-version }}
         ato-config: ${{ inputs.ato-config }}
 
     - run: cd ${{ inputs.working-directory }} && ato package publish ${{ inputs.package-entrypoint }}
