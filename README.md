@@ -20,6 +20,9 @@ In the example below, the option selected is the default, so it's not necessary 
     # Version of the package to publish. If empty, the version is expected in the ato.yaml file.
     package-version: "from-tag"
 
+    # Include artifacts in the package.
+    include-artifacts: "true"
+
     # Skip publishing if the version already exists. If "false", the action will fail if the version already exists.
     # This is useful if you want to publish from the `main` branch or whenever the `package.version` is bumped.
     skip-duplicate-versions: "true"
