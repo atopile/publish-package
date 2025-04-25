@@ -15,6 +15,11 @@ inputs:
     required: false
     default: ""
 
+  include-artifacts:
+    description: "Include artifacts in the package."
+    required: false
+    default: "true"
+
   package-version:
     description: "Version of the package to publish. If empty, the version is expected in the ato.yaml file."
     required: true
@@ -58,6 +63,7 @@ runs:
       shell: bash
       env:
         ATO_CLI_PACKAGE_VERSION: ${{ inputs.package-version }}
+        ATO_CLI_PACKAGE_INCLUDE_ARTIFACTS: ${{ inputs.include-artifacts }}
         ATO_CLI_PACKAGE_SKIP_DUPLICATE_VERSIONS: ${{ inputs.skip-duplicate-versions }}
         ATO_SERVICES_PACKAGES_URL: ${{ inputs.registry }} # envvar honored by the config, not specified by the CLI
         NONINTERACTIVE: 1
