@@ -59,7 +59,10 @@ runs:
         version: ${{ inputs.atopile-version }}
         ato-config: ${{ inputs.ato-config }}
 
-    - run: cd ${{ inputs.working-directory }} && ato package publish ${{ inputs.package-entrypoint }}
+    - run: |
+        pushd ${{ inputs.working-directory }}
+        ato package publish ${{ inputs.package-entrypoint }}
+        popd
       shell: bash
       env:
         ATO_CLI_PACKAGE_VERSION: ${{ inputs.package-version }}
